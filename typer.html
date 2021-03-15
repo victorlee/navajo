@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Navajo typer</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript">
+        function getReplacedText(latinText) {
+            if (!latinText) {
+                return "";
+        }
+            var replacedText = "";
+            for (var i = 0, len = latinText.length; i < len; i++) {
+                var curLetter = latinText[i];
+                var pos1Txt = latinText[i + 1];
+                var pos2Txt = latinText[i + 2];
+                if (!(curLetter == "")) {
+                    var dualLetter = latreplaced[curLetter + pos1Txt];
+                    if (dualLetter) {
+                        replacedText += dualLetter;
+                        i++;
+                        continue;
+                    }
+                }
+                replacedText += latreplaced[curLetter] || curLetter;
+            }
+            return replacedText;
+        }
+        
+     
+        var latreplaced = {
+ 
+"q":"’",
+"A1":"Á",
+"A2":"Ą",
+"A3":"Ą́",
+"a1":"á",
+"a2":"ą",
+"a3":"ą́",
+"E1":"É",
+"E2":"Ę",
+"E3":"Ę́",
+"e1":"é",
+"e2":"ę",
+"e3":"ę́",
+"I1":"Í",
+"I2":"Į",
+"I3":"Į́",
+"i1":"í",
+"i2":"į",
+"i3":"į́",
+"O1":"Ó",
+"O2":"Ǫ",
+"O3":"Ǫ́",
+"o1":"ó",
+"o2":"ǫ",
+"o3":"ǫ́",
+"U":"Ł",
+"u":"ł",
+
+        };
+
+        function onLatinTextChange(txt) {
+            var replacedTextareaElem = document.getElementById("replaced_textarea");
+            var div = document.createElement("div");
+            var replacedHtmlEntities = getReplacedText(txt);
+            div.innerHTML = replacedHtmlEntities;
+            replacedTextareaElem.value = div.innerText;
+        }
+	    
+	function select() {
+         const input = document.getElementById('latin_textarea');
+ 	 input.focus();
+ 	 input.select();
+	}
+        function copytext() {
+        var copyText = document.getElementById("replaced_textarea");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999)
+        document.execCommand("copy");
+        }
+    </script>
+    
+<style>
+html {font-family:arial}
+table {
+  border-collapse: collapse;
+  width: 90%;
+}
+td, th {
+  border: 1px solid #AAA;
+  text-align: center;
+  padding: 1px;
+}
+textarea {
+	font-size: 13pt;
+	font-family: Arial;
+    width: 96%;
+} 
+.note {
+  border: 1px solid #DDD;
+  width: 45%;
+  text-align: left;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+</style>
+
+
+</head>
+<body>  
+
+<body>  
+
+<center><h1 class="text-center">Navajo typer</h1></center>
+
+<center>
+<table>
+<thead>
+<tr>
+<th>	
+<button onclick="select('latin_textarea')">Select all</button>
+<button onclick="document.getElementById('latin_textarea').value = ''">Clear</button>
+</th>
+<th>
+<button onclick="copytext()">Copy text</button><br>
+</th>
+<th style="width:160px">Conversion table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<textarea
+id="latin_textarea"
+autofocus=""
+placeholder="Latin text here"
+rows="10"
+oninput="onLatinTextChange(this.value)"></textarea>    
+</td>
+<td>
+<textarea rows="10" placeholder="output" id="replaced_textarea"></textarea>    
+</td>
+<td>
+
+<center>
+<div style="overflow-y: scroll; height:200px; width:140px">
+<table>
+<thead>
+<tr>
+<th>in.</th>
+<th>out.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>q</td>
+<td>’</td>
+</tr>
+<tr>
+<td>a1</td>
+<td>á</td>
+</tr>
+<tr>
+<td>a2</td>
+<td>ą</td>
+</tr>
+<tr>
+<td>a3</td>
+<td>ą́</td>
+</tr>
+<tr>
+<td>e1</td>
+<td>é</td>
+</tr>
+<tr>
+<td>e2</td>
+<td>ę</td>
+</tr>
+<tr>
+<td>e3</td>
+<td>ę́</td>
+</tr>
+<tr>
+<td>i1</td>
+<td>í</td>
+</tr>
+<tr>
+<td>i2</td>
+<td>į</td>
+</tr>
+<tr>
+<td>i3</td>
+<td>į́</td>
+</tr>
+<tr>
+<td>o1</td>
+<td>ó</td>
+</tr>
+<tr>
+<td>o2</td>
+<td>ǫ</td>
+</tr>
+<tr>
+<td>o3</td>
+<td>ǫ́</td>
+</tr>
+<tr>
+<td>u</td>
+<td>ł</td>
+</tr>
+</tbody>
+</table>
+
+
+
+</div>
+</center>
+
+</td>
+</tr>
+</tbody>
+</table>
+</center>
+	
+
+
+</body>
+</html>
